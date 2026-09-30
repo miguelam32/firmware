@@ -1,5 +1,6 @@
 #include "core/main_menu.h"
 #include <globals.h>
+#include "rainbowLed.h"
 
 #include "core/bus_HAL.h"
 #include "core/powerSave.h"
@@ -227,7 +228,6 @@ void setup_gpio() {
 
     // init setup from /ports/*/interface.h
     _setup_gpio();
-
     // Smoochiee v2 uses a AW9325 tro control GPS, MIC, Vibro and CC1101 RX/TX powerlines
     ioExpander.init(IO_EXPANDER_ADDRESS, &Wire);
 
@@ -265,12 +265,12 @@ void boot_screen() {
     tft.setTextColor(bruceConfig.priColor, bruceConfig.bgColor);
     tft.setTextSize(FM);
     tft.drawPixel(0, 0, bruceConfig.bgColor);
-    tft.drawCentreString("Bruce", tftWidth / 2, 10, 1);
+    tft.drawCentreString("Se-mi <3", tftWidth / 2, 10, 1);
     tft.setTextSize(FP);
     tft.drawCentreString(BRUCE_VERSION, tftWidth / 2, 25, 1);
     tft.setTextSize(FM);
     tft.drawCentreString(
-        "PREDATORY FIRMWARE", tftWidth / 2, tftHeight + 2, 1
+        "SE-MI  <3", tftWidth / 2, tftHeight + 2, 1
     ); // will draw outside the screen on non touch devices
 }
 
@@ -478,6 +478,7 @@ void setup() {
     bruceConfig.bright = 100; // theres is no value yet
     bruceConfigPins.rotation = ROTATION;
     setup_gpio();
+    startRainbowLed();
 #if defined(HAS_SCREEN)
     tft.init();
     tft.setRotation(bruceConfigPins.rotation);
@@ -621,7 +622,7 @@ void loop() {
         "██   ██ ██   ██ ██    ██ ██      ██      \n"
         "██████  ██   ██  ██████   ██████ ███████ \n"
         "                                         \n"
-        "         PREDATORY FIRMWARE\n\n"
+        "           SE-MI  <3\n\n"
         "Tips: Connect to the WebUI for better experience\n"
         "      Add your network by sending: wifi add ssid password\n\n"
         "At your command:"
