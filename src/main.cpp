@@ -1,6 +1,6 @@
 #include "core/main_menu.h"
 #include <globals.h>
-#include "rainbowLed.h"
+#include "core/rainbowLed.h"
 
 #include "core/bus_HAL.h"
 #include "core/powerSave.h"
