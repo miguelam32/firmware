@@ -453,7 +453,14 @@ void setup() {
 
     log_d("Total heap: %d", ESP.getHeapSize());
     log_d("Free heap: %d", ESP.getFreeHeap());
+    Serial.println("[DEBUG] antes de psramInit");
+    Serial.flush();
+
     bool psramStarted = psramInit();
+
+    Serial.println("[DEBUG] despues de psramInit");
+    Serial.flush();
+
     // Printed unconditionally (boards force CORE_DEBUG_LEVEL=1, so log_d is invisible).
     // If PSRAM fails to init, a PSRAM board effectively becomes a no-PSRAM board and
     // Wi-Fi + BLE cannot coexist. This one boot line makes that failure mode observable.
@@ -478,7 +485,7 @@ void setup() {
     bruceConfig.bright = 100; // theres is no value yet
     bruceConfigPins.rotation = ROTATION;
     setup_gpio();
-    startRainbowLed();
+    // startRainbowLed(); // TEMP disabled for debug
 #if defined(HAS_SCREEN)
     tft.init();
     tft.setRotation(bruceConfigPins.rotation);
